@@ -1,0 +1,2 @@
+This program requires the 'netifaces' python library to be installed.
+Netfiaces can be downloaded here: https://pypi.python.org/pypi/netifaces
