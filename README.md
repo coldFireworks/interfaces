@@ -4,7 +4,7 @@ created by Jordan Newman (jordankylenewman@gmail.com) and distributed under the 
 
 Interfaces is a linux terminal command that displays details about all network interface cards (NICs).
 It can be used as an alternative to the 'ifconfig' command (replaced with the 'ip' command in systemd linux distro's),
-as 'interfaces' give a much neater, more human-readable display, although it is less verbose; displaying only the key information about each NIC.
+as 'interfaces' gives a much neater, more human-readable display, although it is less verbose; displaying only the key information about each NIC.
 
 INSTALLATION
 ------------
