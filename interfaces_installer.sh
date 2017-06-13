@@ -16,4 +16,4 @@ fi
 if ! grep -Fq "alias interfaces" ~/.bash_aliases; then
 	echo "alias interfaces='python ~/.customCommands/interfaces.py'" >> ~/.bash_aliases
 fi
-echo "Install complete, please close and re-open the terminal to use the 'interfaces' command.\n(you may del)"
+echo "Install complete, please close and re-open the terminal to use the 'interfaces' command."
