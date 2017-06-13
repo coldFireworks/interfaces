@@ -2,13 +2,20 @@
 # -.- coding: UTF-8 -.-
 # Creted by Jordan Newman 10th June 2017
 import os, sys, socket, struct
-import netifaces
-from netifaces import AF_INET
 
 BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = '\033[30m', '\033[31m', '\033[32m', '\033[33m', '\033[34m', '\033[1;35m', '\033[36m', '\033[37m'
 
 if not sys.platform.startswith('linux'):
 	raise SystemExit("{0}This program only works on {1}linux{2} machines{3}".format(RED, YELLOW, RED, WHITE))
+
+
+try:
+	import netifaces
+	from netifaces import AF_INET
+	netifacesInstalled = True
+except:
+	print("{0}Please install the {1}\'netifaces\'{2} python library to enable all features of this command{3}".format(RED, GREEN, RED, WHITE))
+	netifacesInstalled = False
 
 def displayInterfaces(interfaces):
 	print("""{0}.__ ______________________________________________  _______ __________ ________
@@ -72,12 +79,13 @@ def getGatewayMAC(iFace = None):
 		return entries[iFace]
 
 def getIP(iFace = None):
-	lo = socket.gethostbyname(socket.gethostname())
-	if (lo == '127.0.1.1' or lo == '127.0.0.1') and iFace != None:
+	if netifacesInstalled == True and iFace != None:
 		internetBroadcastInfo = netifaces.ifaddresses(iFace)[AF_INET]
 		return internetBroadcastInfo[0]['addr']
-	else:
-		return lo
+	iFaceIP = socket.gethostbyname(socket.gethostname())
+	if iFaceIP[0:6] == "127.0." and iFace != "lo":
+		return "unknown"
+	return iFaceIP
 
 def resizeTerminal():
 	sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=26, cols=96))
